@@ -184,13 +184,14 @@ public class Trello {
         // Remove o prompt de MFA caso apareça
         if (Global.capabilitiesMethods.exists(Global.driver, By.id(promptMfa))) {
             Global.capabilitiesMethods.click(
-                    Global.driver, By.id(promptMfa), 1000);
+                    Global.driver, By.id(promptMfa),50);
         }
     }
 
     public void criarQuadro(String novoQuadro) {
 
         // espera a página carregar
+        Global.capabilitiesMethods.wait(3000);
         Global.capabilitiesMethods.waitForPageLoad(Global.driver);
 
         // fecha as preferências de cookies (se existirem)
