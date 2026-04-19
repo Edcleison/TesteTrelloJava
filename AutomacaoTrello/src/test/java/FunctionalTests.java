@@ -1,4 +1,7 @@
+import jdk.jfr.DataAmount;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebDriver;
 
 public class FunctionalTests {
@@ -61,12 +64,15 @@ public class FunctionalTests {
         Global.trello.logout();
     }
 
-    @Test
-    public void fecharQuadros() {
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "//li[div//div[contains(@data-testid,'board-tile-background')]]"
+    })
+    public void fecharQuadros(String xPath) {
 
         Global.trello.login();
 
-        Global.trello.fecharQuadros("//li[contains(@class,'boards-page-board-section-list-item')]");
+        Global.trello.fecharQuadros(xPath);
 
         Global.trello.logout();
     }
